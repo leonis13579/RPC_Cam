@@ -3,12 +3,15 @@ import Resolution
 from Detection import Detection
 from Recorder import Recorder
 from RTSPCam import Camera
+from Rotation import Rotation
 
 cap = Camera("rtsp://192.168.1.99")
 
 resolution = Resolution.get_dims()
 recorder = Recorder(resolution, video_length=10)
+rotation = Rotation()
 detection = Detection(0.6)
+
 
 while True:
     frame = cap.getFrame()
@@ -20,5 +23,6 @@ while True:
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
+rotation.stop_patrol()
 recorder.end_recording()
 cv2.destroyAllWindows()

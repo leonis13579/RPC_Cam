@@ -1,7 +1,7 @@
 import cv2
 import imutils
 import numpy as np
-import InfoTrace
+from InfoTrace import Trace
 from threading import Thread
 from datetime import datetime
 import time
@@ -20,7 +20,7 @@ class Detection:
         self.target_confidence = confidence
         self.flag = True
 
-        InfoTrace.print_info("loading model...")
+        Trace().print_info("loading model...")
         self.net = cv2.dnn.readNetFromCaffe("Caffe/MobileNetSSD_deploy.prototxt.txt",
                                             "Caffe/MobileNetSSD_deploy.caffemodel")
 
